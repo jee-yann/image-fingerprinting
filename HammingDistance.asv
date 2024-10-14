@@ -1,0 +1,16 @@
+function hamming_distance = HammingDistance(fp1, fp2)
+% HAMMINGDISTANCE compares two image fingerprints, and determines the 
+% number of positions at which the corresponding values differ.
+%
+% Input:
+%   image: An m-by-n-by-3 uint8 array representing an RGB colour image.
+% Output:
+%   greyscale: An m-by-n-by-1 uint8 array representing a greyscale image.
+%
+% Author: Gian Mohinani
+
+% Comparing each element in both fingerprints and summing up the total 
+% times it differs which describes the hamming distance.
+hamming_distance = sum(fp1 ~= fp2);
+
+end

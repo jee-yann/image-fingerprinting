@@ -1,0 +1,40 @@
+function resized = ResizeNearest(image, dimensions)
+% RESIZENEAREST uses the Nearest Neighbour Interpolation algorithm to 
+% resize an image to the specified dimensions.
+%
+% Inputs:
+%   image: An m-by-n-by-p uint8 array representing a greyscale (p = 1) 
+%   or a RGB colour (p = 3) image.
+%   dimensions: A 1-by-2 double array containing two values (i, j) 
+%   representing the desired height and width to resize the image to.
+% Output:
+%   resized: An m-by-n-by-1 uint8 array representing a greyscale image.
+%
+% Author: Gian Mohinani
+
+% Storing the original dimensions of an image and the specified dimensions
+% it will transfrom to into variables.
+[m, n, p] = size(image);
+i = dimensions(1);
+j = dimensions(2);
+
+% Initializing the final resized image array which will be i-by-j-by-p.
+resized = zeros(i, j, p, "uint8");
+
+% 
+row_ratio = m/i;
+col_ratio = n/j;
+
+% 
+image = double(image);
+for row = 1:i
+    for col = 1:j
+        og_row = ceil((row - 0.5) * row_ratio);
+        og_col = ceil((col - 0.5) * col_ratio);   
+        resized(row, col, :) = image(og_row, og_col, :);
+    end
+end
+
+
+
+end
